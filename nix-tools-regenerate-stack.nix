@@ -7,7 +7,7 @@ let
   deps = [ nix-tools coreutils nix nix-prefetch-git ];
 
 in
-  writeScript "nix-tools-regenerate" ''
+  writeScript "nix-tools-regenerate-stack" ''
     #!${stdenv.shell}
     #
     # Haskell package set regeneration script.

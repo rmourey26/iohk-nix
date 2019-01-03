@@ -38,8 +38,12 @@ let
     # stack.yaml files.
     package = commonLib.pkgs.callPackage ./nix-tools.nix {};
     # Script to invoke nix-tools stack-to-nix on a repo.
-    regeneratePackages =  commonLib.pkgs.callPackage ./nix-tools-regenerate.nix {
+    regenerateStackPackages = commonLib.pkgs.callPackage ./nix-tools-regenerate-stack.nix {
       nix-tools = package;
+    };
+    regenerateCabalProjectPackages = packages: commonLib.pkgs.callPackage ./nix-tools-regenerate-cabal-project.nix {
+      nix-tools = package;
+      inherit packages;
     };
   };
 
