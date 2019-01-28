@@ -32,6 +32,9 @@ let
     nix-tools.exes =
       mapAttrs (_: mapAttrs (_: _: supportedSystems))
         (filterAttrs (n: v: builtins.elem n packages && v != null) packageSet.nix-tools.exes);
+    nix-tools.all-exes =
+      mapAttrs (_: _: supportedSystems)
+        (filterAttrs (n: v: builtins.elem n packages && v != null) packageSet.nix-tools.all-exes);
     nix-tools.tests =
       mapAttrs (_: mapAttrs (_: _: supportedSystems))
         (filterAttrs (n: v: builtins.elem n packages && v != null) packageSet.nix-tools.tests);
