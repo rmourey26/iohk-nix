@@ -1,0 +1,22 @@
+diff --git a/libraries/ghc-prim/ghc-prim.cabal b/libraries/ghc-prim/ghc-prim.cabal
+index a95f1ecaa8..692b5a8494 100644
+--- a/libraries/ghc-prim/ghc-prim.cabal
++++ b/libraries/ghc-prim/ghc-prim.cabal
+@@ -67,7 +67,6 @@ Library
+         extra-libraries: user32, mingw32, mingwex
+ 
+     c-sources:
+-        cbits/atomic.c
+         cbits/bswap.c
+         cbits/clz.c
+         cbits/ctz.c
+@@ -78,6 +77,9 @@ Library
+         cbits/popcnt.c
+         cbits/word2float.c
+ 
++    if !arch(arm)
++      c-sources: cbits/atomic.c
++
+     -- We need to set the unit ID to ghc-prim (without a version number)
+     -- as it's magic.
+     ghc-options: -this-unit-id ghc-prim

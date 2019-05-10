@@ -15,12 +15,11 @@
                           then "perf-cross-ncg"
                           else "perf-cross";
         enableShared = ps.stdenv.targetPlatform == ps.stdenv.hostPlatform;
-        enableRelocatedStaticLibs = false;
         enableIntegerSimple = false;
       };
     ghcDrvOverrides = drv: {
         dontStrip = true;
-        hardeningDisable = [ "stackprotector" "format" ];
+        hardeningDisable = (drv.hardeningDisable or []) ++ [ "stackprotector" "format" ];
         patches = (drv.patches or [])
          # Patches for which we know they have been merged into a public release already
          ++ lib.optional (builtins.compareVersions drv.version "8.4.3" == 1
@@ -66,9 +65,7 @@
          ++ lib.optional (builtins.compareVersions drv.version "8.6.4" == 0)  ./patches/ghc/ghc-8.6.4-better-plusSimplCountErrors.patch
          ++ lib.optional (builtins.compareVersions drv.version "8.6.4" == 0)  ./patches/ghc/ghc-8.6.4-always-fast-llvm.diff
          ;
-        postPatch = (drv.postPath or "") + ''
-        autoreconf
-        '';
+         postPatch = (drv.postPatch or "") + "\n" + "autoreconf";
       };
   in rec {
    # use the pre-built rocksdb.
