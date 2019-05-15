@@ -100,12 +100,10 @@
      configureFlags = with ps.stdenv; (drv.configureFlags or []) ++ lib.optional hostPlatform.isWindows "--enable-static --disable-shared";
    });
 
-   haskell = let isGhc = ps.hasPrefix "ghc" n;
-                 isGhcjs = ps.hasPrefix "ghcjs";
-                 isBinary = ps.hasSuffix "Binary";
-     in lib.recursiveUpdate ps.haskell {
-       compiler = ps.mapAttrs (_name: compiler: (compiler.override ghcPkgOverrides).overrideAttrs ghcDrvOverrides)
-         ps.filterAttrs (n: _value: isGhc n && !isGhcjs n && !isBinary n) ps.haskell.compiler;
+   haskell = lib.recursiveUpdate ps.haskell {
+       compiler = lib.mapAttrs (_name: compiler: (compiler.override ghcPkgOverrides).overrideAttrs ghcDrvOverrides)
+         # these patches (ghcPkgOverrides and ghcDrvOverrides) only apply to vanilla source ghcs. Not ghcjs or binary distributions.
+         (lib.filterAttrs (n: _value: lib.hasPrefix "ghc" n && !lib.hasPrefix "ghcjs" n && !lib.hasSuffix "Binary" n) ps.haskell.compiler);
        };
   };
 }
