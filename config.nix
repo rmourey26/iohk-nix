@@ -103,7 +103,8 @@
    haskell = lib.recursiveUpdate ps.haskell {
        compiler = lib.mapAttrs (_name: compiler: (compiler.override ghcPkgOverrides).overrideAttrs ghcDrvOverrides)
          # these patches (ghcPkgOverrides and ghcDrvOverrides) only apply to vanilla source ghcs. Not ghcjs or binary distributions.
-         (lib.filterAttrs (n: _value: lib.hasPrefix "ghc" n && !lib.hasPrefix "ghcjs" n && !lib.hasSuffix "Binary" n) ps.haskell.compiler);
+         # we also ignore ghc82. And are only concerned with ghc84+
+         (lib.filterAttrs (n: _value: lib.hasPrefix "ghc" n && !lib.hasPrefix "ghc82" n && !lib.hasPrefix "ghcjs" n && !lib.hasSuffix "Binary" n) ps.haskell.compiler);
        };
   };
 }
