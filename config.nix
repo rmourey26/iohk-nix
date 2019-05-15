@@ -100,8 +100,12 @@
      configureFlags = with ps.stdenv; (drv.configureFlags or []) ++ lib.optional hostPlatform.isWindows "--enable-static --disable-shared";
    });
 
-    haskell = lib.recursiveUpdate ps.haskell {
-      compiler = builtins.mapAttrs (_name: compiler: (compiler.override ghcPkgOverrides).overrideAttrs ghcDrvOverrides) ps.haskell.compiler;
-    };
+   haskell = let isGhc = ps.hasPrefix "ghc" n;
+                 isGhcjs = ps.hasPrefix "ghcjs";
+                 isBinary = ps.hasSuffix "Binary";
+     in lib.recursiveUpdate ps.haskell {
+       compiler = ps.mapAttrs (_name: compiler: (compiler.override ghcPkgOverrides).overrideAttrs ghcDrvOverrides)
+         ps.filterAttrs (n: _value: isGhc n && !isGhcjs n && !isBinary n) ps.haskell.compiler;
+       };
   };
 }
