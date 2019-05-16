@@ -1,4 +1,4 @@
-From 79c2e24d4f24a8ef4344284eeda17b8a9d1f1e64 Mon Sep 17 00:00:00 2001
+From 007fbbcdb73e07a78a9e88d39a66f56fe6937a3c Mon Sep 17 00:00:00 2001
 From: Moritz Angermann <moritz.angermann@gmail.com>
 Date: Thu, 16 May 2019 13:35:31 +0800
 Subject: [PATCH] Add _GLOBAL_OFFSET_TABLE_ support
@@ -8,12 +8,12 @@ relocation logic for R_ARM_BASE_PREL and R_ARM_GOT_BREL which
 the gnu toolchain (gas, gcc, ...) prefers to produce.  Apparently
 recent llvm toolchains will produce those as well.
 ---
- rts/linker/Elf.c     | 29 +++++++++++++++++++++++++++--
+ rts/linker/Elf.c     | 31 +++++++++++++++++++++++++++++--
  rts/linker/elf_got.c | 10 +++++++---
- 2 files changed, 34 insertions(+), 5 deletions(-)
+ 2 files changed, 36 insertions(+), 5 deletions(-)
 
 diff --git a/rts/linker/Elf.c b/rts/linker/Elf.c
-index b647d207cb..db545a36a8 100644
+index b647d207cb..bd4f448774 100644
 --- a/rts/linker/Elf.c
 +++ b/rts/linker/Elf.c
 @@ -1023,6 +1023,19 @@ do_Elf_Rel_relocations ( ObjectCode* oc, char* ehdrC,
@@ -36,7 +36,7 @@ index b647d207cb..db545a36a8 100644
     for (j = 0; j < nent; j++) {
         Elf_Addr offset = rtab[j].r_offset;
         Elf_Addr info   = rtab[j].r_info;
-@@ -1117,19 +1130,31 @@ do_Elf_Rel_relocations ( ObjectCode* oc, char* ehdrC,
+@@ -1117,19 +1130,33 @@ do_Elf_Rel_relocations ( ObjectCode* oc, char* ehdrC,
  #        endif
  
  #        ifdef arm_HOST_ARCH
@@ -62,10 +62,12 @@ index b647d207cb..db545a36a8 100644
 +           break;
 +
 +       case COMPAT_R_ARM_GOT_BREL: /* GOT(S) + A – GOT_ORG */
++       {
 +           int32_t A = *pP;
 +           void* GOT_S = symbol->got_addr;
 +           *(uint32_t *)P = (uint32_t) GOT_S + A - (uint32_t) oc->info->got_start;
 +           break;
++       }
 +
         case COMPAT_R_ARM_CALL:
         case COMPAT_R_ARM_JUMP24:
