@@ -64,6 +64,7 @@
          ++ lib.optional (builtins.compareVersions drv.version "8.6.4" == 0)  ./patches/ghc/ghc-8.6.4-reenable-th-qq-in-stage1.patch
          ++ lib.optional (builtins.compareVersions drv.version "8.6.4" == 0)  ./patches/ghc/ghc-8.6.4-better-plusSimplCountErrors.patch
          ++ lib.optional (builtins.compareVersions drv.version "8.6.4" == 0)  ./patches/ghc/ghc-8.6.4-always-fast-llvm.diff
+         ++ lib.optional (ps.stdenv.targetPlatform.isAarch32) ./patches/ghc/ghc-arm-got-reloc.patch
          ;
          postPatch = (drv.postPatch or "") + "\n" + "autoreconf";
       };
