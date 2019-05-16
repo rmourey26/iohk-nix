@@ -104,7 +104,9 @@
        compiler = lib.mapAttrs (_name: compiler: (compiler.override ghcPkgOverrides).overrideAttrs ghcDrvOverrides)
          # these patches (ghcPkgOverrides and ghcDrvOverrides) only apply to vanilla source ghcs. Not ghcjs or binary distributions.
          # we also ignore ghc82. And are only concerned with ghc84+
-         (lib.filterAttrs (n: _value: lib.hasPrefix "ghc" n && !lib.hasPrefix "ghc82" n && !lib.hasPrefix "ghcjs" n && !lib.hasSuffix "Binary" n) ps.haskell.compiler);
+         (lib.filterAttrs
+           (n: _value: !ps.stdenv.targetPlatform.isGhcjs # we want to apply this only to non-ghcjs ones. As we do some ghc <- ghcjs mapping for ghcjs.
+                       && lib.hasPrefix "ghc" n && !lib.hasPrefix "ghc82" n && !lib.hasPrefix "ghcjs" n && !lib.hasSuffix "Binary" n) ps.haskell.compiler);
        };
   };
 }
