@@ -78,6 +78,23 @@ let
     # Check scripts
     check-hydra = pkgsDefault.callPackage ./ci/check-hydra.nix {};
     check-nix-tools = pkgsDefault.callPackage ./ci/check-nix-tools.nix {};
+    monoNixpkgs = import sources.nixpkgs-mono {};
+    mono = (monoNixpkgs.pkgs.callPackage (sources.nixpkgs-mono + "/pkgs/development/compilers/mono/default.nix") {
+      withLLVM = false;
+    });
+    choco = commonLib.pkgsDefault.callPackage ./choco { inherit mono; };
+
+    makeSnap = commonLib.pkgsDefault.callPackage ./snapcraft/make-snap.nix {};
+    snapcraft = commonLib.pkgsDefault.callPackage ./snapcraft/snapcraft.nix {};
+    squashfsTools = commonLib.pkgsDefault.squashfsTools.overrideAttrs (old: {
+      patches = old.patches ++ [
+        ./snapcraft/0005-add-fstime.patch
+      ];
+    });
+    snapReviewTools = commonLib.pkgsDefault.callPackage ./snapcraft/snap-review-tools.nix {
+      inherit squashfsTools;
+    };
+
   };
 
   cardanoLib = commonLib.pkgsDefault.callPackage ./cardano-lib {};
@@ -127,7 +144,7 @@ let
       (commonLib.pkgsDefault.callPackage ./overlays/rust/mozilla.nix {})
       (import ./overlays/rust)
     ];
-    pkgs = import sources.nixpkgs-unstable {
+    pkgs = import sources.nixpkgs {
       inherit overlays;
       config = globalConfig // config;
       inherit system crossSystem;
@@ -159,10 +176,14 @@ in {
     openapi-spec-validator
     cardano-repo-tool
     haskellBuildUtils
+    makeSnap
+    snapcraft
+    snapReviewTools
+    choco
 
     # scripts
     check-hydra
-    check-nix-tools;
+ makeSnap snapcraft snapReviewTools choco   check-nix-tools;
   release-lib = ./lib/release-lib.nix;
   inherit (import sources.niv {}) niv;
 }
