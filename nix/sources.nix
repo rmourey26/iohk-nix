@@ -21,7 +21,7 @@ with rec
         add a package called "nixpkgs" to your sources.json.
     '';
 
-  sources_gitignore = 
+  sources_gitignore =
     if builtins.hasAttr "gitignore" sources
     then sources.gitignore
     else abort
@@ -62,6 +62,10 @@ with rec
     then builtins.fetchTarball { inherit url; }
     else pkgs.fetchzip attrs;
 
+  # A wrapper around pkgs.fetchurl that has inspectable arguments,
+  # annoyingly this means we have to specify them
+  fetchurl = { url, sha256 }@attrs: pkgs.fetchurl attrs;
+
   hasNixpkgsPath = (builtins.tryEval <nixpkgs>).success;
   hasThisAsNixpkgsPath =
     (builtins.tryEval <nixpkgs>).success && <nixpkgs> == ./.;
@@ -86,7 +90,7 @@ with rec
     in builtins.getAttr fetcherName {
       "tarball" = fetchzip;
       "builtin-tarball" = builtins_fetchTarball;
-      "file" = pkgs.fetchurl;
+      "file" = fetchurl;
       "builtin-url" = builtins_fetchurl;
     };
 };
@@ -96,7 +100,7 @@ mapAttrs (name: spec:
   then abort
     "The values in sources.json should not have an 'outPath' attribute"
   else
-    let 
+    let
       host = if (name == "nixpkgs") then "custom_nixpkgs" else name;
       tryFromPath = builtins.tryEval (builtins.findFile builtins.nixPath host);
       defaultSpec = (if builtins.hasAttr "url" spec && builtins.hasAttr "sha256" spec
@@ -113,8 +117,8 @@ mapAttrs (name: spec:
     in if builtins.hasAttr "rev" spec && builtins.hasAttr "url" spec then
       defaultSpec //
         { revOverride = rev: if (rev == null) then defaultSpec else
-              let 
-                spec' = removeAttrs (spec // { 
+              let
+                spec' = removeAttrs (spec // {
                   rev = rev;
                   url = builtins.replaceStrings [defaultSpec.rev] [rev] defaultSpec.url;
                 }) [ "sha256" ];

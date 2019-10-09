@@ -29,10 +29,10 @@
         "homepage": "https://github.com/input-output-hk/niv",
         "owner": "input-output-hk",
         "repo": "niv",
-        "rev": "4229fbcf62997467c34283a2f353702359e78e5a",
-        "sha256": "1y1h6aj0rxrrhvp9jpr6xw3zsa1l8ac25ng4xzjskr5kg620pxqr",
+        "rev": "c25268460b72cea5b7294354ab019997530a6f3d",
+        "sha256": "1fgq1nkycm54f431h6wflh6rr7xsq3q2fq9drbgra2fnrsyn65ll",
         "type": "tarball",
-        "url": "https://github.com/input-output-hk/niv/archive/4229fbcf62997467c34283a2f353702359e78e5a.tar.gz",
+        "url": "https://github.com/input-output-hk/niv/archive/c25268460b72cea5b7294354ab019997530a6f3d.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
