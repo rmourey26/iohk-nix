@@ -33,7 +33,7 @@
   # Arguments to pass to packageSet.
 , projectArgs ? { config = { allowUnfree = false; inHydra = true; }; }
   # Project source git revision, for "mkRequiredJob"
-, gitrev ? null
+, rev ? null
 }:
 
 with pkgs.lib;
@@ -102,7 +102,7 @@ in
       # status to GitHub for every commit, which we want, and it wouldn't
       # normally do.
       build-version = pkgs.writeText "version.json" (builtins.toJSON
-        (filterAttrs (n: _: n == "version") project // { inherit gitrev; }));
+        (filterAttrs (n: _: n == "version") project // { inherit rev; }));
     in {
       inherit build-version;
       required = pkgs.releaseTools.aggregate ({
