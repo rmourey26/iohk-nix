@@ -117,9 +117,12 @@ let
   forEnvironments = f: lib.mapAttrs
     (name: env: f (env // { inherit name; }))
     environments;
+  forEnvironmentsCustom = f: environments: lib.mapAttrs
+    (name: env: f (env // { inherit name; }))
+    environments;
 
   cardanoConfig = ./.;
 
 in {
-  inherit environments forEnvironments mkEdgeTopology mkProxyTopology cardanoConfig;
+  inherit environments forEnvironments forEnvironmentsCustom mkEdgeTopology mkProxyTopology cardanoConfig;
 }
