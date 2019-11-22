@@ -92,9 +92,9 @@ let
     shelley_staging_short = rec {
       relays = "relays.staging-shelley-short.aws.iohkdev.io";
       edgeNodes = [
-        "52.59.133.44"
-        "3.114.127.167"
-        "18.138.87.237"
+        "18.185.36.137"
+        "18.177.81.247"
+        "3.1.243.94"
       ];
       edgePort = 3001;
       confKey = "shelley_staging_short_full";
