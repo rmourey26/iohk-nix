@@ -75,11 +75,11 @@ let
       nodeConfig = networkConfig // defaultLogConfig;
     };
     shelley_staging = rec {
-      relays = "relays.staging-shelley.aws.iohkdev.io";
+      relays = "relays.staging-shelley.dev.iohkdev.io";
       edgeNodes = [
-        "3.124.154.93"
-        "13.231.96.153"
-        "18.141.37.212"
+        "3.125.23.159"
+        "18.177.133.109"
+        "18.141.119.164"
       ];
       edgePort = 3001;
       confKey = "shelley_staging_full";
@@ -90,7 +90,7 @@ let
       nodeConfig = networkConfig // defaultLogConfig;
     };
     shelley_staging_short = rec {
-      relays = "relays.staging-shelley-short.aws.iohkdev.io";
+      relays = "relays.staging-shelley-short.dev.iohkdev.io";
       edgeNodes = [
         "18.185.36.137"
         "18.177.81.247"
