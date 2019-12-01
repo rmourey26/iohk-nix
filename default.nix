@@ -17,6 +17,7 @@ let
   jemallocOverlay = import ./overlays/jemalloc.nix;
 
   commonLib = rec {
+    fetchNixpkgs = import ./fetch-tarball-with-override.nix "custom_nixpkgs";
     # equivalent of <nixpkgs> but pinned instead of system
     nixpkgs = builtins.getAttr
       (if application != "" then "nixpkgs-${application}" else "nixpkgs")
