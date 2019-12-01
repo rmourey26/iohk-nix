@@ -183,7 +183,7 @@ in {
 
     # scripts
     check-hydra
- makeSnap snapcraft snapReviewTools choco   check-nix-tools;
+    check-nix-tools;
   release-lib = ./lib/release-lib.nix;
   inherit (import sources.niv {}) niv;
 }
