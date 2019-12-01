@@ -58,7 +58,8 @@ let
 
     # Development tools
     haskellBuildUtils = import ./utils/default.nix {
-      pkgs = import (fetchNixpkgs nixpkgsJsonDefault) { inherit system; };
+      # TODO fix this before merging
+      inherit pkgs;
     };
     cache-s3 = pkgsDefault.callPackage ./pkgs/cache-s3.nix {};
     stack-hpc-coveralls = pkgsDefault.haskellPackages.callPackage ./pkgs/stack-hpc-coveralls.nix {};
