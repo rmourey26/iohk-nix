@@ -5,7 +5,13 @@ nix-tools-pkgs-path: # the path to the local pkgs.nix file for nix-tools that im
 { system ? builtins.currentSystem
 , crossSystem ? null
 , config ? {}
-, pkgs ? commonLib.getPkgs { inherit system crossSystem config; }
+, pkgs ? (commonLib.getPkgs
+    (let
+      nixpkgs-unstable = import (import ./nix/sources.nix).nixpkgs-unstable {};
+    in {
+      inherit system crossSystem config;
+      extraOverlays = [( self: super: { rocksdb = nixpkgs-unstable.rocksdb; }) ];
+    }))
 }:
 with builtins; with pkgs.lib;
 let  nix-tools = import nix-tools-pkgs-path {
