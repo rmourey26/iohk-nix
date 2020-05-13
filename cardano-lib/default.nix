@@ -167,6 +167,14 @@ let
       nodeConfig = defaultLogConfig // networkConfig;
       genesisFile = networkConfig.GenesisFile;
     };
+    ffff = rec {
+      private = false;
+      relaysNew = "relays-new.ffff.dev.cardano.org";
+      networkConfig = import ./ffff-config.nix;
+      consensusProtocol = networkConfig.Protocol;
+      nodeConfig = defaultLogConfig // networkConfig;
+      genesisFile = networkConfig.GenesisFile;
+    };
     alpha1 = rec {
       private = true;
       relaysNew = "relays-new.alpha1.dev.cardano.org";
