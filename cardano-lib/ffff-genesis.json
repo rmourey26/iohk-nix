@@ -1,5 +1,5 @@
 {
-    "activeSlotsCoeff": 1,
+    "activeSlotsCoeff": 0.1,
     "protocolParams": {
         "poolDecayRate": 0,
         "poolDeposit": 500000000,
@@ -7,7 +7,7 @@
             "minor": 0,
             "major": 0
         },
-        "decentralisationParam": 0.5,
+        "decentralisationParam": 1.0,
         "maxTxSize": 16384,
         "minFeeA": 44,
         "maxBlockBodySize": 65536,
@@ -27,22 +27,23 @@
         "a0": 0.1
     },
     "protocolMagicId": 42,
-    "startTime": "2020-05-15T02:35:00.000000000Z",
+    "startTime": "2020-05-15T03:10:00Z",
     "genDelegs": {
-        "7bc22a9637d062c2f865200d9656820007400173412f18cc5c1d8b6a24cac311": "4b5853bbad2be60c448ba07a8e114afe1c6f135ad1d63eac058f9afa5400c250",
-        "d92fa97a199d4858a7db54b4e977fc1d76cf736f46432f76ea56ad8ae41a0e04": "d6fd692f4f441c6a310f3b45b9f4bd4a0e8af6079cdaa616c9301161312631dc",
-        "bf26dbc7abbddf9a2db4a0790cebf34c6b5df996dbc233d5032ffb53109b024e": "4271c7fcde7f9922234612a7d85f4e663bc4df6bf1c4eae838efbeff7d64ebe3"
+        "4b6aa4523c10916a4433ec90de28d4f27df34f2aa6f0ce3ca7e3258e3829d104": "d519bda59e9ff35e03ec32895ea5729f8fdfa36a482699937c106781a8161b99",
+        "a88396e3ad74279c3c13e3598abe8c0a5187cf5ec9a08ad09ae6be1ae8af69ca": "b51c5c149b1252174267bbc1bae487a82236a9733e47e2e1d96f4145b83a0d9b",
+        "19db4176cbfa1b2822be533746de5cf4732a1774ceb40b7045442d17a86e7df5": "003c56f88bbf3e49e1aa61c1eac851e8068dc25f6d2adb499038a3efa1ab9508"
     },
     "updateQuorum": 3,
     "maxMajorPV": 0,
     "initialFunds": {
-        "614855786eb2fc95267f6710bbcd2a5b85c80f7520c370e6a9a9689814d97d2d5d": 10000000000000000
+        "614460dfb4d0a71160da27f7434ef7834b791ae1887c38acf9cff1161541d2fb77": 30000000000000000,
+        "611e56d024564aef767dbb27516cb43bb6d4630f5301beeed52eaf979c69e8b92f": 30000000000000000
     },
-    "maxLovelaceSupply": 45000000000000000,
+    "maxLovelaceSupply": 60000000000000000,
     "networkMagic": 42,
-    "epochLength": 600,
+    "epochLength": 12000,
     "staking": null,
-    "slotsPerKESPeriod": 3600,
+    "slotsPerKESPeriod": 60,
     "slotLength": 1,
     "maxKESEvolutions": 14,
     "securityParam": 120
