@@ -7,7 +7,7 @@
             "minor": 0,
             "major": 0
         },
-        "decentralisationParam": 1.0,
+        "decentralisationParam": 0.5,
         "maxTxSize": 16384,
         "minFeeA": 44,
         "maxBlockBodySize": 65536,
@@ -27,24 +27,24 @@
         "a0": 0.1
     },
     "protocolMagicId": 42,
-    "startTime": "2020-05-15T03:10:00Z",
+    "startTime": "2020-05-15T16:30Z",
     "genDelegs": {
-        "4b6aa4523c10916a4433ec90de28d4f27df34f2aa6f0ce3ca7e3258e3829d104": "d519bda59e9ff35e03ec32895ea5729f8fdfa36a482699937c106781a8161b99",
-        "a88396e3ad74279c3c13e3598abe8c0a5187cf5ec9a08ad09ae6be1ae8af69ca": "b51c5c149b1252174267bbc1bae487a82236a9733e47e2e1d96f4145b83a0d9b",
-        "19db4176cbfa1b2822be533746de5cf4732a1774ceb40b7045442d17a86e7df5": "003c56f88bbf3e49e1aa61c1eac851e8068dc25f6d2adb499038a3efa1ab9508"
+        "ccc59542674136fc0ca3900b503536c8d64248bb2290addae9569a8270f82d44": "18013da332bf5505d3a04adf4fe9b3da7e9d3c2570ec931b5502b253b4866674",
+        "1321b8fef20917aeb5ecdc5213512acd21dff2a1940353dd885cbf6664356496": "3e09642aaee44d158152a2fbe279a852c12fc86badccfa8794b132e1add6dab7",
+        "8a1ede0d252cdca91a7ce20f062698cedfe07ecbad998b9f456ee18b581c1d0b": "f2df90b9dafc17d8b3b8dde5359b7d98d45e00068fcd495277f3ad834826681e"
     },
     "updateQuorum": 3,
     "maxMajorPV": 0,
     "initialFunds": {
-        "614460dfb4d0a71160da27f7434ef7834b791ae1887c38acf9cff1161541d2fb77": 30000000000000000,
-        "611e56d024564aef767dbb27516cb43bb6d4630f5301beeed52eaf979c69e8b92f": 30000000000000000
+        "616f224e92b9076e69d8d981c20c8cc271aab874bac814b0eac550206f76b9f654": 30000000000000000,
+        "610baca78dcf9f2b1e57b2947e4c0e2efc29180f5b8cca494fcc3746a218f1c550": 30000000000000000
     },
     "maxLovelaceSupply": 60000000000000000,
     "networkMagic": 42,
-    "epochLength": 12000,
+    "epochLength": 1800,
     "staking": null,
-    "slotsPerKESPeriod": 60,
+    "slotsPerKESPeriod": 900,
     "slotLength": 1,
-    "maxKESEvolutions": 14,
-    "securityParam": 120
+    "maxKESEvolutions": 8,
+    "securityParam": 18
 }
