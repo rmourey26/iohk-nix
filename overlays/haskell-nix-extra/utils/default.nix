@@ -1,7 +1,7 @@
 { pkgs
 }:
 
-with pkgs;
+with (pkgs.evalPackages or pkgs);
 
 rec {
   # The utils derivation.
