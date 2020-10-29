@@ -19,7 +19,7 @@
   # is what we use on mainnet in Byron era.
   Protocol = "Cardano";
 
-  PBftSignatureThreshold = 0.9;
+  PBftSignatureThreshold = 0.85;
   # The mainnet does not include the network magic into addresses. Testnets do.
   RequiresNetworkMagic = "RequiresMagic";
 
