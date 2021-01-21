@@ -141,6 +141,17 @@ let
       edgePort = 3001;
       explorerConfig = mkExplorerConfig "shelley_qa" nodeConfig;
     };
+    shelley_ma = rec {
+      useByronWallet = false;
+      private = false;
+      relaysNew = "relays-new.shelley-ma.dev.cardano.org";
+      smashUrl = "https://smash.shelley-ma.dev.cardano.org";
+      networkConfig = import ./shelley_ma-config.nix;
+      consensusProtocol = networkConfig.Protocol;
+      nodeConfig = defaultLogConfig // networkConfig;
+      edgePort = 3001;
+      explorerConfig = mkExplorerConfig "shelley_ma" nodeConfig;
+    };
     launchpad = rec {
       useByronWallet = false;
       private = false;
