@@ -174,12 +174,5 @@
       "cardano.node.metrics" = [ "EKGViewBK" ];
       "cardano.node.resources" = [ "EKGViewBK" ];
     };
-
-    # This section is more expressive still, and needs to be properly documented.
-    mapSubtrace = {
-      "cardano.node.metrics" = {
-         subtrace = "Neutral";
-      };
-    };
   };
 }
