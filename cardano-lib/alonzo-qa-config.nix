@@ -32,7 +32,7 @@
   TestEnableDevelopmentHardForkEras = true;
   TestEnableDevelopmentNetworkProtocols = true;
 
-  MaxKnownMajorProtocolVersion = 2;
+  MaxKnownMajorProtocolVersion = 5;
   #### LOGGING Debug
 
   minSeverity = "Debug";
@@ -41,8 +41,8 @@
 
   # This protocol version number gets used by block producing nodes as part
   # part of the system for agreeing on and synchronising protocol updates.
-  LastKnownBlockVersion-Major = 5;
-  LastKnownBlockVersion-Minor = 1;
+  LastKnownBlockVersion-Major = 4;
+  LastKnownBlockVersion-Minor = 0;
   LastKnownBlockVersion-Alt = 0;
 
   # In the Byron era some software versions are also published on the chain.
