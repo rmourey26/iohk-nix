@@ -133,6 +133,7 @@
   TraceHandshake = false;
 
   TraceInboundGovernor = true;
+  TraceInboundGovernorCounters = true;
 
   # Trace IP Subscription messages.
   TraceIpSubscription = true;
